@@ -15,9 +15,13 @@ public class GetBox : MonoBehaviour
     public static int propCount;
     public int propTotal = 10;
 
+    [Header("道具音效")]
+    public AudioSource propAudio;
+
     [Header("終點門口")]
     public GameObject finalLeftDoor;
     public GameObject finalRightDoor;
+
 
     public static bool finish = false;
 
@@ -25,6 +29,7 @@ public class GetBox : MonoBehaviour
     {
         finish = false;
         propCount = 0;
+        propAudio = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -50,6 +55,8 @@ public class GetBox : MonoBehaviour
                 finish = true;
                 winTip.SetActive(true);
             }
+
+            propAudio.Play();
         }
         else if(collision.gameObject.tag == "Dead")
         {
